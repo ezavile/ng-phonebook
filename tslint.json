@@ -33,9 +33,13 @@
       true,
       {
         "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
+          "protected-instance-field",
+          "public-instance-field",
+          "private-instance-field",
+          "protected-instance-method",
+          "public-static-method",
+          "public-instance-method",
+          "private-instance-method",
           "instance-method"
         ]
       }
@@ -44,6 +48,7 @@
     "no-bitwise": true,
     "no-console": [
       true,
+      "log",
       "debug",
       "info",
       "time",
@@ -56,10 +61,7 @@
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
+    "no-inferrable-types": false,
     "no-misused-new": true,
     "no-non-null-assertion": true,
     "no-shadowed-variable": true,
@@ -137,6 +139,10 @@
     "directive-class-suffix": true,
     "no-access-missing-member": true,
     "templates-use-public": true,
-    "invoke-injectable": true
+    "invoke-injectable": true,
+    "import-destructuring-spacing": true,
+    "no-unused-variable": [
+      true
+    ]
   }
 }
