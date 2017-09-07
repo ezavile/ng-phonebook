@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TitleComponent } from './title/title.component';
 import { IcoContactComponent } from './ico-contact/ico-contact.component';
+import { ConvertToSpacesPipe } from './convert-to-spaces/convert-to-spaces.pipe';
 
 @NgModule({
   imports: [
@@ -12,13 +13,15 @@ import { IcoContactComponent } from './ico-contact/ico-contact.component';
   ],
   declarations: [
     TitleComponent,
-    IcoContactComponent
+    IcoContactComponent,
+    ConvertToSpacesPipe
   ],
   exports: [
     CommonModule,
     FormsModule,
     TitleComponent,
-    IcoContactComponent
+    IcoContactComponent,
+    ConvertToSpacesPipe
   ]
 })
 export class SharedModule { }

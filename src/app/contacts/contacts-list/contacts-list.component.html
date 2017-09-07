@@ -29,7 +29,7 @@
             <td>{{contact.firstname}}</td>
             <td>{{contact.lastname}}</td>
             <td>{{contact.email}}</td>
-            <td>{{contact.phone}}</td>
+            <td>{{contact.phone | convertToSpaces: '-'}}</td>
             <td>
               <pb-ico-contact
                 type="{{contact.kinship}}"
