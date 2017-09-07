@@ -4,10 +4,10 @@ import { ContactService } from '../contact.service';
 import { IContact } from '../contact';
 
 @Component({
-  templateUrl: './contacts-list.component.html',
-  styleUrls: ['./contacts-list.component.styl']
+  templateUrl: './contact-list.component.html',
+  styleUrls: ['./contact-list.component.styl']
 })
-export class ContactsListComponent implements OnInit {
+export class ContactListComponent implements OnInit {
   whereIsItfrom: string;
   contacts: IContact[];
   filteredContacts: IContact[];
