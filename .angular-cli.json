@@ -19,7 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "pb",
       "styles": [
-        "styles.styl"
+        "styles.styl",
+        "../node_modules/bootstrap/dist/css/bootstrap.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
