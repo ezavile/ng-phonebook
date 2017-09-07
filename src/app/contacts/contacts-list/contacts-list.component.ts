@@ -5,10 +5,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacts-list.component.styl']
 })
 export class ContactsListComponent implements OnInit {
+  whereIsItfrom: string;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onIcoClicked(message: string): void {
+    this.whereIsItfrom = message;
   }
 
 }
