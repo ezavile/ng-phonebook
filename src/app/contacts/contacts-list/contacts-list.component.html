@@ -4,31 +4,42 @@
     <div class="panel-heading">
       <h4>List of contacts <small style="float:right" *ngIf="whereIsItfrom">{{whereIsItfrom}}</small></h4>
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Kinship</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor='let contact of contacts'>
-          <td>{{contact.firstname}}</td>
-          <td>{{contact.lastname}}</td>
-          <td>{{contact.email}}</td>
-          <td>{{contact.phone}}</td>
-          <td>
-            <pb-ico-contact
-              type="{{contact.kinship}}"
-              name="{{contact.firstname}}"
-              (icoClicked)="onIcoClicked($event)"
-            ></pb-ico-contact>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="panel-body">
+      <div>
+        <span>Search name:</span>
+        <input type='text' [(ngModel)]='filterBy' (ngModelChange)="doFilter($event)"/>
+      </div>
+      <div>
+        <h4 class="text-center"><b>Searching to: {{filterBy}}</b></h4>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Kinship</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let contact of filteredContacts'>
+            <td>{{contact.firstname}}</td>
+            <td>{{contact.lastname}}</td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.phone}}</td>
+            <td>
+              <pb-ico-contact
+                type="{{contact.kinship}}"
+                name="{{contact.firstname}}"
+                (icoClicked)="onIcoClicked($event)"
+              ></pb-ico-contact>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

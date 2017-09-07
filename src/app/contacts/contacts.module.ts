@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ContactService } from './contact.service';
 import { ContactsRoutingModule } from './contacts-routing.module';
@@ -8,7 +7,6 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
     ContactsRoutingModule,
     SharedModule
   ],
