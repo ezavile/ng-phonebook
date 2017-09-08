@@ -81,12 +81,12 @@ export class ContactService {
         //     .delay(3000)
         //     .catch(this.handleError)
         // );
-        return Observable.of(this.contacts).delay(3000);
+        return Observable.of(this.contacts).delay(1000);
     }
 
     getContact(id: number): Observable<IContact> {
       const contact: IContact = this.contacts.find((c) => c.id === id);
-      return Observable.of(contact).delay(3000);
+      return Observable.of(contact).delay(1000);
     }
 
     saveProduct(contact: IContact): Observable<IContact> {

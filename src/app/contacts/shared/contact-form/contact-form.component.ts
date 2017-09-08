@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import { Router  } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { IContact } from '../../contact';
 import { ContactService } from '../../contact.service';
@@ -26,16 +26,19 @@ function dontMentionItValidation(word: string): ValidatorFn {
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.styl']
 })
-export class ContactFormComponent implements OnInit, OnChanges {
-  @Input() contactId: number;
+export class ContactFormComponent implements OnInit {
   @Output() contact: EventEmitter<IContact> = new EventEmitter<IContact>();
   contactForm: FormGroup;
+  contactLoaded: IContact;
 
   constructor(
     private fb: FormBuilder,
     private contactService: ContactService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.contactLoaded = this.route.snapshot.data['contact'];
+  }
 
   ngOnInit() {
     this.contactForm = this.fb.group({
@@ -52,18 +55,8 @@ export class ContactFormComponent implements OnInit, OnChanges {
       phone: ['', Validators.required],
       kinship: 'home'
     });
-  }
-
-  ngOnChanges() {
-    if (this.contactId) {
-      this.contactService
-        .getContact(this.contactId)
-        .subscribe(
-          contact => {
-            this.contactForm.patchValue(contact);
-          },
-          error => console.log(error)
-        );
+    if (this.contactLoaded) {
+      this.contactForm.patchValue(this.contactLoaded);
     }
   }
 

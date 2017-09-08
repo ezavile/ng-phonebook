@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ContactService } from '../contact.service';
 import { IContact } from '../contact';
@@ -13,18 +14,15 @@ export class ContactListComponent implements OnInit {
   filteredContacts: IContact[];
   filterBy: string;
 
-  constructor(private contactService: ContactService) { }
-
-  ngOnInit() {
-    this.contactService
-    .getContacts()
-    .subscribe(
-      contacts => {
-        this.buildContacts(contacts);
-      },
-      error => console.log(error)
-    );
+  constructor(
+    private contactService: ContactService,
+    private route: ActivatedRoute
+  ) {
+    const contacts: IContact[] = this.route.snapshot.data['contacts'];
+    this.buildContacts(contacts);
   }
+
+  ngOnInit() {}
 
   onIcoClicked(message: string): void {
     this.whereIsItfrom = message;
