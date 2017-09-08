@@ -10,6 +10,7 @@
         class="form-horizontal"
         novalidate
         (ngSubmit)="saveContact()"
+        [formGroup]="contactForm"
       >
         <div class="form-group">
           <label class="col-md-2 control-label" for="contactName">Name</label>
@@ -19,6 +20,7 @@
               id="contactName"
               type="text"
               placeholder="Name (required)"
+              formControlName="firstname"
             />
           </div>
         </div>
@@ -31,6 +33,7 @@
               id="contactLastname"
               type="text"
               placeholder="Last name (required)"
+              formControlName="lastname"
             />
           </div>
         </div>
@@ -43,6 +46,7 @@
               id="email"
               type="text"
               placeholder="email"
+              formControlName="email"
             />
           </div>
         </div>
@@ -55,6 +59,7 @@
               id="phone"
               type="text"
               placeholder="phone (required)"
+              formControlName="phone"
             />
           </div>
         </div>
@@ -67,6 +72,7 @@
                 type="radio"
                 value="home"
                 name="kindship"
+                formControlName="kindship"
               >
               Relative
             </label>
@@ -75,6 +81,7 @@
                 type="radio"
                 value="heart"
                 name="kindship"
+                formControlName="kindship"
               >
               Girlfriend/Boyfriend
             </label>
@@ -83,6 +90,7 @@
                 type="radio"
                 value="glass"
                 name="kindship"
+                formControlName="kindship"
               >
               Friend
             </label>
@@ -91,13 +99,14 @@
                 type="radio"
                 value="lock"
                 name="kindship"
+                formControlName="kindship"
               >
               Co-worker
             </label>
           </div>
         </div>
 
-        <div>
+        <div formGroupName="address">
           <div class="form-group">
             <label class="col-md-2 control-label" for="street">Street</label>
             <div class="col-md-8">
@@ -106,6 +115,7 @@
                 id="street"
                 type="text"
                 placeholder="Street"
+                formControlName="street"
               />
             </div>
           </div>
@@ -118,12 +128,14 @@
                 class="form-control"
                 id="city"
                 placeholder="City"
+                formControlName="city"
               >
             </div>
             <div class="col-md-3">
               <select
                 id="state"
                 class="form-control"
+                formControlName="state"
               >
                 <option value="" disabled selected hidden>Select a State...</option>
                 <option value="COA">Coahuila</option>
@@ -137,6 +149,7 @@
                 class="form-control"
                 id="zipcode"
                 placeholder="Zip Code"
+                formControlName="zipcode"
               >
             </div>
           </div>
@@ -168,3 +181,7 @@
     </div>
   </div>
 </div>
+
+<pre>
+  {{contactForm.value | json}}
+</pre>
