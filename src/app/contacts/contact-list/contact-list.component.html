@@ -23,6 +23,7 @@
             <th>Phone</th>
             <th>Kinship</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +45,14 @@
                 [routerLink]="['/contact', contact.id, 'edit']"
               >
                 Edit
+              </a>
+            </td>
+            <td>
+              <a
+                class="btn btn-danger"
+                (click)="onDelete(contact.id)"
+              >
+                Delete
               </a>
             </td>
           </tr>

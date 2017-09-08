@@ -1,3 +1,15 @@
-<p>
-  contact-edit works!
-</p>
+<div class="container">
+  <pb-title pageTitle="Edit Contact"></pb-title>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>Edit contact</h4>
+    </div>
+
+    <div class="panel-body">
+      <pb-contact-form
+        [contactId]="contactId"
+        (contact)="onSave($event)"
+      ></pb-contact-form>
+    </div>
+  </div>
+</div>

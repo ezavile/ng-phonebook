@@ -20,8 +20,7 @@ export class ContactListComponent implements OnInit {
     .getContacts()
     .subscribe(
       contacts => {
-        this.contacts = contacts;
-        this.filteredContacts = this.contacts;
+        this.buildContacts(contacts);
       },
       error => console.log(error)
     );
@@ -36,5 +35,21 @@ export class ContactListComponent implements OnInit {
     this.filteredContacts = this.contacts.filter((contact: IContact) => {
       return contact.firstname.toLocaleLowerCase().includes(name);
     });
+  }
+
+  onDelete(id: number): void {
+    this.contactService
+      .deleteProduct(id)
+      .subscribe(
+        contacts => {
+          this.buildContacts(contacts);
+        },
+        error => console.log(error)
+      );
+  }
+
+  private buildContacts(contacts: IContact[]): void {
+    this.contacts = contacts;
+    this.filteredContacts = this.contacts;
   }
 }

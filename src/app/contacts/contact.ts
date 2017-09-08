@@ -12,6 +12,5 @@ export interface IContact {
   address: IAddress;
   email: string;
   phone: string;
-  cell: string;
   kinship: string;
 }
