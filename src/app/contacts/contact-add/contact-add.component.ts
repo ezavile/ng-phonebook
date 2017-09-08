@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'pb-contact-add',
@@ -13,8 +13,8 @@ export class ContactAddComponent implements OnInit {
 
   ngOnInit() {
     this.contactForm = this.fb.group({
-      firstname: '',
-      lastname: '',
+      firstname: ['', [Validators.required, Validators.minLength(3)]],
+      lastname: ['', Validators.required],
       address: this.fb.group({
         street: '',
         city: '',
@@ -22,7 +22,7 @@ export class ContactAddComponent implements OnInit {
         zipcode: ''
       }),
       email: '',
-      phone: '',
+      phone: ['', Validators.required],
       kindship: 'home'
     });
   }
