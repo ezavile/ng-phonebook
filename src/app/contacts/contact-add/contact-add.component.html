@@ -38,9 +38,11 @@
               <span *ngIf="contactForm.get('firstname').errors.minlength">
                 The first name must be longer than 3 characters.
               </span>
+              <span *ngIf="contactForm.get('firstname').errors.dontMensoWord">
+                Please, Don't type it.
+              </span>
             </span>
           </div>
-
         </div>
 
         <div class="form-group">
@@ -60,6 +62,19 @@
                   ) && !contactForm.get('lastname').valid
                 }"
             />
+            <span class="help-block" *ngIf="
+              (
+                contactForm.get('lastname').touched ||
+                contactForm.get('lastname').dirty
+              ) && !contactForm.get('lastname').valid"
+            >
+              <span *ngIf="contactForm.get('lastname').errors.minlength">
+                The first name must be longer than 3 characters.
+              </span>
+              <span *ngIf="contactForm.get('lastname').errors.dontMentionIt">
+                Please, Don't type it.
+              </span>
+            </span>
           </div>
         </div>
 
