@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { Router  } from '@angular/router';
+
+import { IContact } from '../contact';
+import { ContactService } from '../contact.service';
 
 function dontMensoWordValidation(c: AbstractControl): {[key: string]: boolean} | null {
   if (c.value.toLowerCase().includes('menso')) {
@@ -25,7 +29,11 @@ function dontMentionItValidation(word: string): ValidatorFn {
 export class ContactAddComponent implements OnInit {
   contactForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private contactService: ContactService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.contactForm = this.fb.group({
@@ -41,6 +49,20 @@ export class ContactAddComponent implements OnInit {
       phone: ['', Validators.required],
       kindship: 'home'
     });
+  }
+
+  saveContact() {
+    if (this.contactForm.dirty && this.contactForm.valid) {
+      this.contactService
+        .saveProduct(<IContact>this.contactForm.value)
+        .subscribe(
+          (contact) => {
+            console.log(contact);
+            this.router.navigate(['/contacts']);
+          },
+          (error) => console.log(error)
+        );
+    }
   }
 
 }

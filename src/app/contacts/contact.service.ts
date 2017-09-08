@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
@@ -23,6 +23,16 @@ export class ContactService {
             .delay(3000)
             .catch(this.handleError)
         );
+    }
+
+    saveProduct(contact: IContact): Observable<IContact> {
+      // return (
+      //   this.http
+      //     .post<IContact>(this.API, contact)
+      //     .do(data => console.log('createProduct: ' + JSON.stringify(data)))
+      //     .catch(this.handleError)
+      // );
+      return Observable.of(contact);
     }
 
     private handleError(err: HttpErrorResponse) {
