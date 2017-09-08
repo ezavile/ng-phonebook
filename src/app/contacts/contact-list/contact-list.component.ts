@@ -37,9 +37,9 @@ export class ContactListComponent implements OnInit {
 
   onDelete(id: number): void {
     this.contactService
-      .deleteProduct(id)
-      .subscribe(
-        contacts => {
+      .deleteContact(id)
+      .subscribe(() => {
+          const contacts = this.contacts.filter(contact => contact.id !== id);
           this.buildContacts(contacts);
         },
         error => console.log(error)

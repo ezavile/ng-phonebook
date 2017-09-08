@@ -21,7 +21,7 @@ export class ContactEditComponent implements OnInit, IContactForm {
 
   onSave(contact: IContact) {
     this.contactService
-      .editProduct(contact)
+      .editContact(contact)
       .subscribe(
         contact => {
           console.log(contact);

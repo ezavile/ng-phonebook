@@ -20,7 +20,7 @@ export class ContactAddComponent implements OnInit, IContactForm {
 
   onSave(contact: IContact) {
     this.contactService
-      .saveProduct(contact)
+      .saveContact(contact)
       .subscribe(
         contact => {
           console.log(contact);
