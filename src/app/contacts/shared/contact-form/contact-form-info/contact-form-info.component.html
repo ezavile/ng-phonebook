@@ -1,0 +1,147 @@
+<form
+  class="form-horizontal"
+  style="padding: 20px;"
+  novalidate
+  [formGroup]="form"
+>
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="contactName">Name</label>
+    <div class="col-md-8">
+      <input
+        class="form-control"
+        id="contactName"
+        type="text"
+        placeholder="Name (required)"
+        formControlName="firstname"
+        [ngClass]="
+          {'has-error':
+            (
+              form.get('firstname').touched ||
+              form.get('firstname').dirty
+            ) && !form.get('firstname').valid
+          }"
+      />
+      <span class="help-block" *ngIf="
+        (
+          form.get('firstname').touched ||
+          form.get('firstname').dirty
+        ) && !form.get('firstname').valid"
+      >
+        <span *ngIf="form.get('firstname').errors.minlength">
+          The first name must be longer than 3 characters.
+        </span>
+        <span *ngIf="form.get('firstname').errors.dontMensoWord">
+          Please, Don't type it.
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="contactLastname">Last name</label>
+    <div class="col-md-8">
+      <input
+        class="form-control"
+        id="contactLastname"
+        type="text"
+        placeholder="Last name (required)"
+        formControlName="lastname"
+        [ngClass]="
+          {'has-error':
+            (
+              form.get('lastname').touched ||
+              form.get('lastname').dirty
+            ) && !form.get('lastname').valid
+          }"
+      />
+      <span class="help-block" *ngIf="
+        (
+          form.get('lastname').touched ||
+          form.get('lastname').dirty
+        ) && !form.get('lastname').valid"
+      >
+        <span *ngIf="form.get('lastname').errors.minlength">
+          The first name must be longer than 3 characters.
+        </span>
+        <span *ngIf="form.get('lastname').errors.dontMentionIt">
+          Please, Don't type it.
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="email">Email</label>
+    <div class="col-md-8">
+      <input
+        class="form-control"
+        id="email"
+        type="text"
+        placeholder="email"
+        formControlName="email"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="phone">Phone</label>
+    <div class="col-md-8">
+      <input
+        class="form-control"
+        id="phone"
+        type="text"
+        placeholder="phone (required)"
+        formControlName="phone"
+        [ngClass]="
+          {'has-error':
+            (
+              form.get('phone').touched ||
+              form.get('phone').dirty
+            ) && !form.get('phone').valid
+          }"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="kinship">kinship</label>
+    <div class="col-md-8">
+      <label>
+        <input
+          type="radio"
+          value="home"
+          name="kinship"
+          formControlName="kinship"
+        >
+        Relative
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="heart"
+          name="kinship"
+          formControlName="kinship"
+        >
+        Girlfriend/Boyfriend
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="glass"
+          name="kinship"
+          formControlName="kinship"
+        >
+        Friend
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="lock"
+          name="kinship"
+          formControlName="kinship"
+        >
+        Co-worker
+      </label>
+    </div>
+  </div>
+</form>

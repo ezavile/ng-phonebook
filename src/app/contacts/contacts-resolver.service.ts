@@ -21,6 +21,9 @@ export class ContactsResolver implements Resolve<IContact[]> {
     return (
       this.contactServie
         .getContacts()
+        .do((contacts) => {
+          return contacts;
+        })
         .catch(
           error => {
             console.log(`Retrieval error: ${error}`);

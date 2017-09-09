@@ -1,0 +1,55 @@
+<form
+  class="form-horizontal"
+  style="padding: 20px;"
+  novalidate
+  [formGroup]="form"
+>
+  <div formGroupName="address">
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="street">Street</label>
+      <div class="col-md-8">
+        <input
+          class="form-control"
+          id="street"
+          type="text"
+          placeholder="Street"
+          formControlName="street"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="city">City, State, Zip Code</label>
+      <div class="col-md-3">
+        <input
+          type="text"
+          class="form-control"
+          id="city"
+          placeholder="City"
+          formControlName="city"
+        >
+      </div>
+      <div class="col-md-3">
+        <select
+          id="state"
+          class="form-control"
+          formControlName="state"
+        >
+          <option value="" disabled selected hidden>Select a State...</option>
+          <option value="COA">Coahuila</option>
+          <option value="NL">Nuevo León</option>
+          <option value="CH">Chihuahua</option>
+          <option value="JAL">Jalisco</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <input type="number"
+          class="form-control"
+          id="zipcode"
+          placeholder="Zip Code"
+          formControlName="zipcode"
+        >
+      </div>
+    </div>
+  </div>
+</form>

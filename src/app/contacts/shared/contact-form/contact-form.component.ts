@@ -1,25 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { IContact } from '../../contact';
-import { ContactService } from '../../contact.service';
-
-function dontMensoWordValidation(c: AbstractControl): {[key: string]: boolean} | null {
-  if (c.value.toLowerCase().includes('menso')) {
-    return { 'dontMensoWord': true };
-  }
-  return null;
-}
-
-function dontMentionItValidation(word: string): ValidatorFn {
-  return (c: AbstractControl): {[key: string]: boolean} | null => {
-    if (c.value.toLowerCase().includes(word)) {
-      return { 'dontMentionIt': true };
-    }
-    return null;
-  };
-}
+import { ContactFormInfoComponent } from './contact-form-info/contact-form-info.component';
+import { ContactFormAddressComponent } from './contact-form-address/contact-form-address.component';
 
 @Component({
   selector: 'pb-contact-form',
@@ -29,40 +14,35 @@ function dontMentionItValidation(word: string): ValidatorFn {
 export class ContactFormComponent implements OnInit {
   @Output() contact: EventEmitter<IContact> = new EventEmitter<IContact>();
   contactForm: FormGroup;
+  contactInfoForm: FormGroup = new FormGroup({});
+  contactAddressForm: FormGroup = new FormGroup({});
   contactLoaded: IContact;
 
-  constructor(
-    private fb: FormBuilder,
-    private contactService: ContactService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
-    this.contactLoaded = this.route.snapshot.data['contact'];
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.contactForm = this.fb.group({
-      id: 0,
-      firstname: ['', [Validators.required, Validators.minLength(3), dontMensoWordValidation]],
-      lastname: ['', [Validators.required, dontMentionItValidation('wey')]],
-      address: this.fb.group({
-        street: '',
-        city: '',
-        state: '',
-        zipcode: ''
-      }),
-      email: '',
-      phone: ['', Validators.required],
-      kinship: 'home'
-    });
-    if (this.contactLoaded) {
-      this.contactForm.patchValue(this.contactLoaded);
+    this.contactLoaded = this.route.snapshot.data['contact'];
+  }
+
+  onActivate(component: ContactFormInfoComponent | ContactFormAddressComponent): void {
+    if (component instanceof ContactFormInfoComponent) {
+      this.contactInfoForm = component.form;
     }
+    if (component instanceof ContactFormAddressComponent) {
+      this.contactAddressForm = component.form;
+    }
+    this.contactForm = component.form;
+  }
+
+  onDeactivate(component: ContactFormInfoComponent | ContactFormAddressComponent): void {
+    this.contactLoaded = {...this.contactLoaded, ...component.form.value};
+    this.route.snapshot.data['contact'] = {...this.contactLoaded};
   }
 
   saveContact(): void {
-    if (this.contactForm.dirty && this.contactForm.valid) {
-      this.contact.emit(<IContact>this.contactForm.value);
+    if (this.contactInfoForm.valid && this.contactAddressForm.valid) {
+      this.contact.emit(<IContact>{...this.contactLoaded, ...this.contactForm.value});
     }
   }
 

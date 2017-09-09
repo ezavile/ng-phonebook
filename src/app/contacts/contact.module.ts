@@ -9,6 +9,8 @@ import { ContactEditComponent } from './contact-edit/contact-edit.component';
 import { ContactFormComponent } from './shared/contact-form/contact-form.component';
 import { ContactsResolver } from './contacts-resolver.service';
 import { ContactResolver } from './contact-resolver.service';
+import { ContactFormInfoComponent } from './shared/contact-form/contact-form-info/contact-form-info.component';
+import { ContactFormAddressComponent } from './shared/contact-form/contact-form-address/contact-form-address.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { ContactResolver } from './contact-resolver.service';
     ContactListComponent,
     ContactAddComponent,
     ContactEditComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    ContactFormInfoComponent,
+    ContactFormAddressComponent
   ],
   providers: [
     ContactService,

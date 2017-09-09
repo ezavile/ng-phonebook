@@ -24,7 +24,7 @@ export class ContactAddComponent implements OnInit, IContactForm {
       .subscribe(
         contact => {
           console.log(contact);
-          this.router.navigate(['/contacts']);
+          this.router.navigate(['/contact/list']);
         },
         error => console.log(error)
       );

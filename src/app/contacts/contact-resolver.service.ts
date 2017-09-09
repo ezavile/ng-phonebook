@@ -22,7 +22,7 @@ export class ContactResolver implements Resolve<IContact> {
 
     if (isNaN(id)) {
       console.log(`Contact id was not a number: ${id}`);
-      this.router.navigate(['/contacts']);
+      this.router.navigate(['/contact/list']);
     }
 
     return (
@@ -34,14 +34,14 @@ export class ContactResolver implements Resolve<IContact> {
               return contact;
             }
             console.log(`Contact was not found: ${id}`);
-            this.router.navigate(['/contacts']);
+            this.router.navigate(['/contact/list']);
             return null;
           }
         )
         .catch(
           error => {
             console.log(`Retrieval error: ${error}`);
-            this.router.navigate(['/contacts']);
+            this.router.navigate(['/contact/list']);
             return Observable.of(null);
           }
         )
