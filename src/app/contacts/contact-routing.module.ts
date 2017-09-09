@@ -23,30 +23,25 @@ const childrenRoutes: Routes = [
 
 const routes: Routes = [
   {
-    path: 'contact',
-    children: [
-      {
-        path: 'list',
-        component: ContactListComponent,
-        resolve: {
-          contacts: ContactsResolver
-        },
-      },
-      {
-        path: 'add',
-        component: ContactAddComponent,
-        children: [...childrenRoutes]
-      },
-      {
-        path: ':id/edit',
-        component: ContactEditComponent,
-        resolve: {
-          contact: ContactResolver
-        },
-        children: [...childrenRoutes]
-      }
-    ]
+    path: 'list',
+    component: ContactListComponent,
+    resolve: {
+      contacts: ContactsResolver
+    },
   },
+  {
+    path: 'add',
+    component: ContactAddComponent,
+    children: [...childrenRoutes]
+  },
+  {
+    path: ':id/edit',
+    component: ContactEditComponent,
+    resolve: {
+      contact: ContactResolver
+    },
+    children: [...childrenRoutes]
+  }
 ];
 
 @NgModule({

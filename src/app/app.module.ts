@@ -17,7 +17,6 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ContactData, { delay: 1000 }),
-    ContactModule,
     AppRoutingModule,
     SharedModule,
     SpinnerModule
